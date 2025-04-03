@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block header_extra %}
+<div class="score-display">
+    Score: {{ score }} 🌟
+    <div class="progress-bar">
+        <div class="progress-fill" style="width: {{ (score/10)*100 }}%"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="question-card">
+    <div class="kawaii-element" style="top: 10%; left: 5%;">🌿</div>
+    <div class="kawaii-element" style="top: 20%; right: 5%;">🌸</div>
+    <div class="kawaii-element" style="bottom: 10%; left: 10%;">🍄</div>
+    
+    {% if is_correct %}
+        <!-- Correct Answer Display -->
+        <div class="bg-leaf-green text-white p-4 mb-6 rounded-lg border-2 border-tan">
+            <div class="flex items-center">
+                <span class="text-2xl mr-3">🎉</span>
+                <p class="text-xl font-bold">Correct!</p>
+            </div>
+            <p class="mt-2">Your answer "{{ user_answer }}" is correct. +1 point! 🌟</p>
+            <div class="mt-4 flex justify-center">
+                <span class="text-4xl">✨</span>
+                <span class="text-4xl mx-2">🌟</span>
+                <span class="text-4xl">✨</span>
+            </div>
+        </div>
+    {% else %}
+        <!-- Incorrect Answer Display -->
+        <div class="bg-red-500 text-white p-4 mb-6 rounded-lg border-2 border-tan">
+            <div class="flex items-center">
+                <span class="text-2xl mr-3">💫</span>
+                <p class="text-xl font-bold">Incorrect</p>
+            </div>
+            <p class="mt-2">Your answer "{{ user_answer }}" is not correct.</p>
+            <div class="mt-4 flex justify-center">
+                <span class="text-4xl">🌱</span>
+                <span class="text-4xl mx-2">💪</span>
+                <span class="text-4xl">🌱</span>
+            </div>
+        </div>
+
+        <!-- Correct Answer and Explanation -->
+        <div class="bg-light-green p-6 rounded-lg mb-6 border-2 border-tan">
+            <h3 class="text-lg font-semibold text-forest-green mb-2">The correct answer is:</h3>
+            <p class="text-lg font-bold text-gray-800 mb-4">{{ correct_answer }}</p>
+            
+            <h3 class="text-lg font-semibold text-forest-green mb-2">Explanation:</h3>
+            <p class="text-gray-700">{{ explanation }}</p>
+        </div>
+    {% endif %}
+
+    <!-- Question Display -->
+    <div class="border-t-2 border-tan pt-6 mb-6">
+        <h2 class="text-xl font-bold text-forest-green mb-2">Question:</h2>
+        <p class="text-gray-700">{{ question.text }}</p>
+    </div>
+
+    <!-- Navigation Buttons -->
+    <div class="flex justify-center space-x-4 mt-8">
+        <a href="/quiz" class="submit-button">
+            Next Question 🌱
+        </a>
+        <form action="/reset" method="post">
+            <button type="submit" class="submit-button bg-red-500 hover:bg-red-600">
+                Reset Quiz 🍂
+            </button>
+        </form>
+    </div>
+</div>
+
+<!-- Achievement Badge (shown when reaching certain scores) -->
+{% if score >= 5 %}
+<div class="achievement-badge" title="Physics Pro!">
+    🏆
+</div>
+{% endif %}
+{% endblock %} 

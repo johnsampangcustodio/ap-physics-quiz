@@ -1,0 +1,409 @@
+/* Additional custom styles beyond TailwindCSS */
+
+/* For equations and physics notation */
+.equation {
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+    margin: 1rem 0;
+    text-align: center;
+}
+
+/* For physics units */
+.unit {
+    font-style: normal;
+    font-weight: normal;
+}
+
+/* Highlight for important physics terms */
+.physics-term {
+    color: #4338ca;
+    font-weight: 500;
+}
+
+/* For marking correct answers in green */
+.correct-answer {
+    color: #059669;
+    font-weight: bold;
+}
+
+/* For marking incorrect answers in red */
+.incorrect-answer {
+    color: #dc2626;
+    text-decoration: line-through;
+}
+
+/* Animation for correct answer feedback */
+@keyframes pulse-success {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.pulse-success {
+    animation: pulse-success 0.5s ease-in-out;
+}
+
+/* Kawaii Forest Theme */
+:root {
+    --forest-green: #2d5a27;
+    --moss-green: #3a7d44;
+    --leaf-green: #4a9b4f;
+    --light-green: #8bb174;
+    --brown: #8b4513;
+    --tan: #d2b48c;
+    --white: #ffffff;
+    --black: #000000;
+    --pink: #ff9ec4;
+    --purple: #b388ff;
+    --yellow: #ffd700;
+}
+
+body {
+    background: linear-gradient(135deg, var(--forest-green), var(--moss-green));
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Kawaii Forest Header */
+header {
+    background: var(--brown);
+    border-bottom: 4px solid var(--tan);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 10;
+}
+
+/* Question Card */
+.question-card {
+    background: var(--white);
+    border-radius: 30px;
+    border: 4px solid var(--tan);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    padding: 2rem;
+    margin: 1rem;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    transform-style: preserve-3d;
+    transition: transform 0.3s ease;
+}
+
+.question-card:hover {
+    transform: translateY(-5px) rotate(1deg);
+}
+
+.question-card::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    width: 50px;
+    height: 50px;
+    background: var(--leaf-green);
+    border-radius: 50%;
+    z-index: -1;
+    animation: float 3s ease-in-out infinite;
+}
+
+/* Answer Options */
+.answer-option {
+    background: var(--light-green);
+    border: 3px solid var(--tan);
+    border-radius: 20px;
+    padding: 1rem;
+    margin: 0.5rem 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.answer-option::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.2), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+}
+
+.answer-option:hover::before {
+    transform: translateX(100%);
+}
+
+.answer-option:hover {
+    transform: translateY(-3px) scale(1.02);
+    background: var(--leaf-green);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Correct Answer Animation */
+@keyframes kawaii-success {
+    0% { transform: scale(1); }
+    25% { transform: scale(1.1) rotate(5deg); }
+    50% { transform: scale(1.2) rotate(-5deg); }
+    75% { transform: scale(1.1) rotate(5deg); }
+    100% { transform: scale(1); }
+}
+
+@keyframes confetti {
+    0% { transform: translateY(0) rotate(0deg); }
+    100% { transform: translateY(-100px) rotate(360deg); }
+}
+
+.correct-answer {
+    background: var(--leaf-green);
+    color: var(--white);
+    animation: kawaii-success 0.8s ease-in-out;
+    position: relative;
+}
+
+.correct-answer::after {
+    content: '🎉';
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    font-size: 2rem;
+    animation: confetti 1s ease-out forwards;
+}
+
+/* Incorrect Answer */
+.incorrect-answer {
+    background: #ff6b6b;
+    color: var(--white);
+    text-decoration: line-through;
+}
+
+/* Score Display */
+.score-display {
+    background: var(--tan);
+    border: 3px solid var(--brown);
+    border-radius: 30px;
+    padding: 0.5rem 1.5rem;
+    font-weight: bold;
+    color: var(--forest-green);
+    position: relative;
+    overflow: hidden;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* Submit Button */
+.submit-button {
+    background: var(--brown);
+    color: var(--white);
+    border: none;
+    border-radius: 25px;
+    padding: 1rem 2.5rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.submit-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.2), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+}
+
+.submit-button:hover::before {
+    transform: translateX(100%);
+}
+
+.submit-button:hover {
+    transform: translateY(-2px) scale(1.05);
+    background: var(--forest-green);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Physics Terms */
+.physics-term {
+    color: var(--forest-green);
+    font-weight: bold;
+    text-decoration: underline;
+    position: relative;
+}
+
+.physics-term::after {
+    content: '✨';
+    position: absolute;
+    top: -10px;
+    right: -15px;
+    font-size: 1rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.physics-term:hover::after {
+    opacity: 1;
+}
+
+/* Equations */
+.equation {
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+    margin: 1rem 0;
+    text-align: center;
+    background: var(--light-green);
+    padding: 1rem;
+    border-radius: 15px;
+    border: 2px solid var(--tan);
+    position: relative;
+    overflow: hidden;
+}
+
+.equation::before {
+    content: '📐';
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    font-size: 1.5rem;
+    opacity: 0.3;
+}
+
+/* Units */
+.unit {
+    font-style: normal;
+    font-weight: normal;
+    color: var(--forest-green);
+    position: relative;
+}
+
+.unit::after {
+    content: '🔢';
+    position: absolute;
+    top: -5px;
+    right: -15px;
+    font-size: 0.8rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.unit:hover::after {
+    opacity: 1;
+}
+
+/* Footer */
+footer {
+    background: var(--brown);
+    color: var(--tan);
+    border-top: 4px solid var(--tan);
+    position: relative;
+}
+
+footer::before {
+    content: '🌳';
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2rem;
+    animation: wave 2s infinite;
+}
+
+@keyframes wave {
+    0%, 100% { transform: translateX(-50%) rotate(0deg); }
+    25% { transform: translateX(-50%) rotate(5deg); }
+    75% { transform: translateX(-50%) rotate(-5deg); }
+}
+
+/* Forest Decoration */
+.forest-decoration {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.forest-decoration::before,
+.forest-decoration::after {
+    content: '🌲';
+    position: absolute;
+    font-size: 2rem;
+    opacity: 0.2;
+    animation: float 10s infinite ease-in-out;
+}
+
+.forest-decoration::before {
+    top: 20%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.forest-decoration::after {
+    top: 60%;
+    right: 15%;
+    animation-delay: -5s;
+}
+
+@keyframes float {
+    0% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(5deg); }
+    100% { transform: translateY(0) rotate(0deg); }
+}
+
+/* Kawaii Elements */
+.kawaii-element {
+    position: absolute;
+    font-size: 1.5rem;
+    opacity: 0.6;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Progress Bar */
+.progress-bar {
+    width: 100%;
+    height: 10px;
+    background: var(--light-green);
+    border-radius: 5px;
+    overflow: hidden;
+    margin: 1rem 0;
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--leaf-green);
+    transition: width 0.3s ease;
+}
+
+/* Achievement Badge */
+.achievement-badge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: var(--yellow);
+    color: var(--brown);
+    padding: 0.5rem;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    animation: spin 1s ease-in-out;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg) scale(0); }
+    100% { transform: rotate(360deg) scale(1); }
+} 
