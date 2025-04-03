@@ -22,7 +22,7 @@ def build_static_site():
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AP Physics C Mechanics Quiz</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="static/styles.css">
+    <link rel="stylesheet" href="./static/styles.css">
     <style>
         body {
             min-height: 100vh;
@@ -56,7 +56,7 @@ def build_static_site():
                 </p>
                 
                 <div class="mt-8">
-                    <a href="quiz.html" class="submit-button">
+                    <a href="./quiz.html" class="submit-button">
                         Start Quiz 🌱
                     </a>
                 </div>
@@ -81,7 +81,7 @@ def build_static_site():
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AP Physics C Mechanics Quiz</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="static/styles.css">
+    <link rel="stylesheet" href="./static/styles.css">
     <style>
         body {
             min-height: 100vh;
